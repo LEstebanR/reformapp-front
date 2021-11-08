@@ -1,4 +1,3 @@
-import users from "../assets/mock/users";
 import OptionsProfile from "../components/OptionsProfile";
 import { Grid } from "@mui/material";
 import CompanySearch from "../components/CompanySearch.jsx";
@@ -15,7 +14,7 @@ const options ={
   ]
 }
 
-const user = users[0];
+
 
 
 const ProfileHome = () => {

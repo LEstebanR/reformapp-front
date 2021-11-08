@@ -44,8 +44,8 @@ export default function HeaderMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={login} href="./login">Login</MenuItem>
-        <MenuItem onClick={register} href="./register">Register</MenuItem>
+        <MenuItem onClick={login} href="./login">Iniciar sesión</MenuItem>
+        <MenuItem onClick={register} href="./register">Cerrar sesión</MenuItem>
       
       </Menu>
     </div>

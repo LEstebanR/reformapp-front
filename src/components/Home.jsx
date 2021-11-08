@@ -29,14 +29,17 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Home = (props) => {
-  const user = props.user;
+  const userDb = props.user;
   const reform = props.reform;
   const classes = useStyles();
+  // const {user} = useContext(DataContext)
 
+  console.log (userDb)
   return (
+    userDb ? 
     <div className={classes.general_container}>
-      <img src={user.profile.avatar} alt="profile" className={classes.img}/>
-      <Typography variant="h2">{user.profile.name}</Typography>
+      <img src={userDb[0].avatar} alt="profile" className={classes.img}/>
+      <Typography variant="h2">{userDb[0].name}</Typography>
       <Typography variant="h4">Reformas:</Typography>
       <div className = {classes.cards_container}>
         <ReformCard reform={reform} />
@@ -47,6 +50,7 @@ const Home = (props) => {
         <ReformCard reform={reform} />
       </div>
     </div>
+    : <div>Loading...</div>
   );
 };
 

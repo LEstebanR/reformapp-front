@@ -3,8 +3,6 @@ import Typography from '@mui/material/Typography'
 import makeStyles from "@mui/styles/makeStyles";
 import TimeLine from "../components/TimeLine.jsx";
 
-console.log(reform);
-
 const useStyles = makeStyles(theme => ({
   img:{
     width: "10vw",

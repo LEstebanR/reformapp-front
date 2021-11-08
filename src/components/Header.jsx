@@ -5,6 +5,7 @@ import { makeStyles } from '@mui/styles';
 import { useMediaQuery } from '@mui/material';
 import HeaderMenu from './headerMenu';
 import {Link} from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -36,6 +37,14 @@ const Header = (props) =>  {
   const mobileSize = useMediaQuery('(max-width: 600px)');
   const biggerScreens = useMediaQuery('(min-width: 600px)');
   const classes = useStyles();
+  const { loginWithRedirect, logout } = useAuth0();
+
+  const login = () => {
+    console.log('antes')
+    loginWithRedirect()
+    console.log('despues')
+    
+  };
 
   return (
     <div className={classes.header}>
@@ -43,16 +52,22 @@ const Header = (props) =>  {
         <Toolbar>
           
           <Button  ton variant="text" color="inherit"  className={classes.button_header}>
-            <Link to="/" className={classes.link}>Home</Link>
+            <Link to="/" className={classes.link}>Inicio</Link>
           </Button>
           <div className={classes.separator}></div>
           {biggerScreens &&
           <div className={classes.button_container}>
-            <Button  ton variant="text" color="inherit" className={classes.button_header}>
-              <Link to="/login" className={classes.link}>Login</Link>
+            <Button 
+            ton variant="text" 
+            color="inherit" 
+            onClick={() => login()} 
+            className={classes.button_header}>Iniciar sesión
             </Button>
-            <Button variant="text" color="inherit"  className={classes.button_header}>
-              <Link to="/register" className={classes.link}>Register</Link>
+            <Button 
+            ton variant="text" 
+            color="inherit" 
+            onClick={() => logout({})} 
+            className={classes.button_header}>Cerrar sesión
             </Button>
           </div>
           }

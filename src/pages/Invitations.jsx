@@ -1,4 +1,3 @@
-import users from "../assets/mock/users";
 import OptionsProfile from "../components/OptionsProfile";
 import { Grid } from "@mui/material";
 import Invitations from "../components/Invitations.jsx";
@@ -15,9 +14,6 @@ const options ={
     'Invitaciones'
   ]
 }
-
-const user = users[0];
-
 
 const InvitationsPage = () => {
   return (
