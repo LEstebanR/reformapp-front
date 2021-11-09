@@ -3,10 +3,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function HeaderMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const { loginWithRedirect, logout } = useAuth0();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -16,13 +18,14 @@ export default function HeaderMenu() {
 
   const login = () => {
     setAnchorEl(null);
-    window.location.href = '/login';
+    loginWithRedirect()
   };
 
   const register = () => {
     setAnchorEl(null);
-    window.location.href = '/register';
+    logout()
   };
+
 
   return (
     <div>

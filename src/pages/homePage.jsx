@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import LandinPage from './LandingPage';
 import { useAuth0 } from '@auth0/auth0-react';
 import history from '../utils/history';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 
 
@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const getUser = async() => {
     try {
-      const userVerify = await axios.get(`http://localhost:4000/user/${user.sub}`)
+      const userVerify = await axios.get(`/user/${user.sub}`)
       setUserDb(userVerify.data)
     } catch (error) {
       console.error(error)

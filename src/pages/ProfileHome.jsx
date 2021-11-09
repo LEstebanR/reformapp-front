@@ -21,39 +21,30 @@ const options ={
   ]
 }
 
-
-
-// const user = users[0];
-
-
 const ProfileHome = () => {
   const [userDb, setUserDb] = useState()
-  const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState("owner");
   const {user} = useContext(DataContext)
-
+  
   useEffect(() => {
     const getUser = async() => {
       try {
-      const currentUser = await axios.get(`http://localhost:4000/user/${user.sub}`)
-      setUserDb(currentUser.data)    
+      const currentUser = await axios.get(`https://reformappbackend.herokuapp.com/user/${user.sub}`)
+      setUserDb(currentUser.data)
+      setRole(userDb[0].role)   
       } catch (error) {
         console.error(error)
       }
     
     }
     getUser()
-    setLoading(false)
-  }, [user]);
+  }, [user, userDb]);
 
 
-
-  
   return (
-    loading ? '...Loading' 
-    :
     <Grid container >
       <Grid item xs={12} sm={4}>
-        <OptionsProfile options={options.company} />
+        <OptionsProfile options={options[role]} />
       </Grid>
       <Grid items xs={12} sm={8}>
         <Home user={userDb} reform={reform}/>

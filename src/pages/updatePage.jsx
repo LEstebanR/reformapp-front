@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../utils/axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import makeStyles from "@mui/styles/makeStyles";
 import { 
@@ -51,7 +51,7 @@ const UpdatePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/categories")
+      .get("/categories")
       .then((res) => {
         setCategories(res.data.categories);
       })

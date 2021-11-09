@@ -1,6 +1,7 @@
 import { Typography} from "@mui/material";
 import ReformCard from "./ReformCard";
 import { makeStyles } from '@mui/styles';
+import Loader from '../components/loader'
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,13 +29,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+
 const Home = (props) => {
   const userDb = props.user;
   const reform = props.reform;
   const classes = useStyles();
   // const {user} = useContext(DataContext)
 
-  console.log (userDb)
+  
   return (
     userDb ? 
     <div className={classes.general_container}>
@@ -50,7 +52,7 @@ const Home = (props) => {
         <ReformCard reform={reform} />
       </div>
     </div>
-    : <div>Loading...</div>
+    : <Loader/>
   );
 };
 

@@ -40,10 +40,7 @@ const Header = (props) =>  {
   const { loginWithRedirect, logout } = useAuth0();
 
   const login = () => {
-    console.log('antes')
     loginWithRedirect()
-    console.log('despues')
-    
   };
 
   return (
