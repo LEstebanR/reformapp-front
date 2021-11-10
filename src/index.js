@@ -12,7 +12,6 @@ const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 ReactDOM.render(
   <React.StrictMode>
-    
     <Auth0Provider domain={domain} clientId={clientId} redirectUri={window.location.origin} >
     <DataProvider>  
       <ThemeProvider theme={theme}>
@@ -20,8 +19,6 @@ ReactDOM.render(
       </ThemeProvider>
     </DataProvider>  
     </Auth0Provider>
-    
-
   </React.StrictMode>,
   document.getElementById('root')
 );

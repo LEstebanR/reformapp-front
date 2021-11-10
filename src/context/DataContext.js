@@ -1,15 +1,30 @@
-import React, { createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
+import axios from '../utils/axios'
 
 export const DataContext = createContext(); 
 
 export const DataProvider = ({children}) => {
   const { user } = useAuth0();
+  const [userDb, setUserDb] = useState('');
+
+  useEffect(() => {
+    const getUser = async() => {
+    try {
+      const userVerify = await axios.get(`/user/${user.sub}`)
+      setUserDb(userVerify.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  getUser()
+  }, [user])
 
   return (
 
-    <DataContext.Provider value={{user}}>
+    <DataContext.Provider value={{user, userDb}}>
       {children}
     </DataContext.Provider>
+
   )
 }

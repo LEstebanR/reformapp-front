@@ -11,23 +11,23 @@ const ReformCard = (props) =>{
         <CardMedia
           component="img"
           height="250"
-          image= {reform[0].image}
+          image= {reform.photo}
           alt="reform_picture"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {reform[0].name}
+            {reform.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {reform[0].description}
+            {reform.description}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
             Contratistas postulados:
           </Typography>
           <AvatarGroup max={6}>
-            <Avatar alt="Remy Sharp" src={reform[0].company.avatar} />
-            <Avatar alt="Remy Sharp" src={reform[0].company.avatar} />
-            <Avatar alt="Remy Sharp" src={reform[0].company.avatar} />
+            {reform.options.map((option, i) => (
+              <Avatar key={i} alt={option.name} src={option.photo} />
+            ))}
           </AvatarGroup>
         </CardContent>
       </CardActionArea>

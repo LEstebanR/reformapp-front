@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { Grid } from "@mui/material";
 import OptionsProfile from "../components/OptionsProfile";
 import Create from "../components/Create.jsx";
 import Map from "../components/Map.jsx"
-
 
 const options ={
   owner : [
@@ -18,6 +18,7 @@ const options ={
 }
 
 const CreatePage = () => {
+  const [reform, setReform] = useState({});
   return (
     <Grid container >
       <Grid item xs={12} lg={4}>
@@ -27,7 +28,7 @@ const CreatePage = () => {
         <Map/>
       </Grid>
       <Grid items xs={12} lg={4}>
-        <Create/>
+        <Create reform={reform} setReform={setReform}/>
       </Grid>
     </Grid>
   );

@@ -34,22 +34,15 @@ const Home = (props) => {
   const userDb = props.user;
   const reform = props.reform;
   const classes = useStyles();
-  // const {user} = useContext(DataContext)
-
   
   return (
-    userDb ? 
+    userDb && reform ? 
     <div className={classes.general_container}>
-      <img src={userDb[0].avatar} alt="profile" className={classes.img}/>
-      <Typography variant="h2">{userDb[0].name}</Typography>
+      <img src={userDb.avatar} alt="profile" className={classes.img}/>
+      <Typography variant="h2">{userDb.name}</Typography>
       <Typography variant="h4">Reformas:</Typography>
       <div className = {classes.cards_container}>
-        <ReformCard reform={reform} />
-        <ReformCard reform={reform} />
-        <ReformCard reform={reform} />
-        <ReformCard reform={reform} />
-        <ReformCard reform={reform} />
-        <ReformCard reform={reform} />
+        {reform.map(reform => <ReformCard reform={reform} key={reform.id}/>)}
       </div>
     </div>
     : <Loader/>

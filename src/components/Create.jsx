@@ -1,3 +1,6 @@
+import { useState, useContext } from "react";
+import { DataContext } from "../context/DataContext";
+import axios from "axios";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Fab from '@mui/material/Fab';
@@ -8,8 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-  import SendIcon from '@mui/icons-material/Send';
-import { useState } from "react";
+import SendIcon from '@mui/icons-material/Send';
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
@@ -30,14 +32,55 @@ const useStyles = makeStyles({
   }
 
 })
-const Create =  () => {
-  const [category, setCategory] = useState('');
+const Create =  ({reform, setReform}) => {
+  const [type, setType] = useState('');
+  const [categories, setCategories] = useState(['Categorías']);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const {userDb} = useContext(DataContext);
   const classes = useStyles();
 
   const handleChange = (event) => {
-    setCategory(event.target.value);
+    setType(event.target.value);
   };
 
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  useState(() => {
+    fetch('https://reformappbackend.herokuapp.com/categories')
+      .then(response => response.json())
+      .then(data => {
+        setCategories(data.categories);
+      })
+  }, []);
+
+
+
+  const send = async (e) => {
+    e.preventDefault();
+    setReform({
+      title: name,
+      description: description,
+      location:"Medellin",
+      photo: "",
+      category: type,
+      owner: userDb.authId
+
+    })
+    try {
+      await axios.post('http://localhost:4000/reform', reform);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  
   return (
     <div className={classes.container} >
       <Typography variant="h4" gutterBottom>Crear Reforma</Typography>
@@ -59,26 +102,25 @@ const Create =  () => {
       }}
       >Agrega una imagen del sitio que quieres reformar</Box>
       <Fab color="primary" aria-label="add"><AddIcon /></Fab>
-      <TextField required id="name-reform" label="Nombre de la reforma" className={classes.input}/>
+      <TextField required id="name-reform" label="Nombre de la reforma" className={classes.input} onChange={handleNameChange}/>
       <FormControl >
         <InputLabel id="category" >Categoría</InputLabel>
         <Select
           labelId="category"
           id="category"
-          value={category}
+          value={type}
           label="category"
           onChange={handleChange}
           className={classes.input}
         >
-          <MenuItem value={10}>Acabados</MenuItem>
-          <MenuItem value={20}>Pintura</MenuItem>
-          <MenuItem value={30}>Redes</MenuItem>
-         
+          {categories.map(category => (
+            <MenuItem key={category._id} value={category.subject}>{category.subject}</MenuItem>
+          ))}
         </Select>
       </FormControl>
 
-      <TextField id="description-reform" label="Descripción de la reforma" multiline rows={3} className={classes.input}/>
-      <Button variant="contained" endIcon={<SendIcon />} className={classes.button}>Send</Button>
+      <TextField id="description-reform" label="Descripción de la reforma" multiline rows={3} className={classes.input} onChange={handleDescriptionChange}/>
+      <Button variant="contained" endIcon={<SendIcon />} className={classes.button} onClick={send}>Send</Button>
 
       </Box>
     </div>
