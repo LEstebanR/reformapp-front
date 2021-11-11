@@ -8,10 +8,11 @@ import Home from './pages/homePage.jsx'
 import createPage from './pages/createPage.jsx'
 import SearchPage from './pages/SearchPage.jsx'
 import CompanySearchPage from './pages/CompanySearchPage.jsx'
-import Invitations from './pages/Invitations.jsx'
+import InvitationsPage from './pages/Invitations.jsx'
 import ReformPage from './pages/ReformPage.jsx'
 import ProfileHome from './pages/ProfileHome';
 import UpdatePage from './pages/updatePage.jsx';
+import InvitePage from './pages/InvitePage.jsx';
 
 const App = () => {
   return (
@@ -24,9 +25,10 @@ const App = () => {
           <Route exact path="/profile/home" component={ProfileHome} />
           <Route exact path="/profile/create" component={createPage} />
           <Route exact path="/profile/ownersearch" component={SearchPage} />
+          <Route exact path="/invite/:id" component={InvitePage} />
           <Route exact path="/profile/companysearch" component={CompanySearchPage} />
-          <Route exact path="/profile/invitations" component={Invitations} />
-          <Route exact path="/reform" component={ReformPage} />
+          <Route exact path="/profile/invitations" component={InvitationsPage} />
+          <Route exact path="/reform/:id" component={ReformPage} />
           <Route  path="*" component={ErrorPage} />
         </Switch>
       </Layout>

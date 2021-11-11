@@ -64,21 +64,22 @@ const Create =  ({reform, setReform}) => {
 
   const send = async (e) => {
     e.preventDefault();
-    setReform({
+      try {
+      setReform({
       title: name,
       description: description,
       location:"Medellin",
       photo: "",
       category: type,
-      owner: userDb.authId
-
-    })
-    try {
-      await axios.post('http://localhost:4000/reform', reform);
+      ownerId: userDb.authId,
+      ownerName: userDb.name,
+      })
+      await axios.post('https://reformappbackend.herokuapp.com/reform', reform);
     } catch (error) {
       console.log(error);
     }
   }
+  
 
   
   return (

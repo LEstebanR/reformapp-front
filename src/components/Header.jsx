@@ -48,7 +48,7 @@ const Header = (props) =>  {
       <AppBar>
         <Toolbar>
           
-          <Button  ton="true" variant="text" color="inherit"  className={classes.button_header}>
+          <Button  ton="true+" variant="text" color="inherit"  className={classes.button_header}>
             <Link to="/" className={classes.link}>Inicio</Link>
           </Button>
           <div className={classes.separator}></div>

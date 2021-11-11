@@ -30,10 +30,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
   
-
-
-
-
 const UpdatePage = () => {
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);

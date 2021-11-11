@@ -23,16 +23,9 @@ const Invitations = () => {
       <Typography variant="h4" gutterBottom>Tus Invitaciones:</Typography>
       <div className={classes.container}>
         <ReformCard reform={reform}/>
-        <ReformCard reform={reform}/>
-        <ReformCard reform={reform}/>
-        <ReformCard reform={reform}/>
-        <ReformCard reform={reform}/>
-        <ReformCard reform={reform}/>
-        <ReformCard reform={reform}/>
-        <ReformCard reform={reform}/>
-        <ReformCard reform={reform}/>
       </div>
     </div>
+
   );
 }
 

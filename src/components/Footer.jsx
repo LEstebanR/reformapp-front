@@ -37,10 +37,7 @@ const Footer = () =>  {
       <Typography variant="h6" color="primary" className={classes.text}>
       © 2021 ReformApp
       </Typography>
-      {/* <Typography variant="h6" color="primary" className={classes.text}>
-        Hecho por Luis Esteban Ramírez
-      </Typography> */}
-          <IconButton edge="center" color="primary" aria-label="menu">
+          <IconButton edge="end" color="primary" aria-label="menu">
             <LinkedInIcon className={classes.icons} />
             <GitHubIcon className={classes.icons}/>
           </IconButton>

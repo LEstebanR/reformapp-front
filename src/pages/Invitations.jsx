@@ -1,6 +1,7 @@
 import OptionsProfile from "../components/OptionsProfile";
 import { Grid } from "@mui/material";
-import Invitations from "../components/Invitations.jsx";
+import AceptInvitations from '../components/AceptInvitations.jsx'
+
 
 const options ={
   owner : [
@@ -16,13 +17,16 @@ const options ={
 }
 
 const InvitationsPage = () => {
+
+
+ 
   return (
     <Grid container >
       <Grid item xs={12} sm={4}>
         <OptionsProfile options={options.company} />
       </Grid>
       <Grid items xs={12} sm={8}>
-        <Invitations/>
+        <AceptInvitations/>
       </Grid>
     </Grid>
   );

@@ -12,7 +12,10 @@ import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 import CheckIcon from '@mui/icons-material/Check';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
-export default function TimeLine() {
+export default function TimeLine(props) {
+  const reform = props.reform[0];
+  console.log(reform)
+
   return (
     <Timeline position="alternate">
       <TimelineItem>

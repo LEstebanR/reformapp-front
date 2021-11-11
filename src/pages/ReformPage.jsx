@@ -1,7 +1,11 @@
+import { useLocation} from "react-router";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 import reform from "../assets/mock/reform";
 import Typography from '@mui/material/Typography'
 import makeStyles from "@mui/styles/makeStyles";
 import TimeLine from "../components/TimeLine.jsx";
+import Loader from "../components/loader";
 
 const useStyles = makeStyles(theme => ({
   img:{
@@ -19,18 +23,39 @@ const useStyles = makeStyles(theme => ({
     gap: "25px",
   }
 }))
+
 const ReformPage = () => {
   const classes = useStyles();
-  return (
+  const [reformData, setReformData] = useState();
+  const  id  = useLocation().pathname.split("/")[2];
+  
+  useEffect(() => {
+    
+    const getReform = async () => {
+      try {
+        const response = await axios.get(`https://reformappbackend.herokuapp.com/reformbyid/${id}`);
+        setReformData(response.data.reform[0]);
+      } catch (error) {
+        console.error(error);
+      } 
+    }
+    getReform();
+    
+  } , [id]);
+
+return (
+  reformData?(
     <>
       <div className={classes.container}>
-        <img src={reform[0].company.avatar} alt="profile" className={classes.img}/>
-        <Typography variant="h4" color="initial">{reform[0].name}</Typography>
-        <Typography variant="body1" color="initial">{reform[0].description}</Typography>
-        <Typography variant="body1" color="initial">Propietario: {reform[0].owner.profile.name}</Typography>
+        <img src={reformData.photo} alt="profile" className={classes.img}/>
+        <Typography variant="h4" color="initial">{reformData.title}</Typography>
+        <Typography variant="body1" color="initial">{reformData.description}</Typography>
+        <Typography variant="body1" color="initial">Propietario: {reformData.ownerName}</Typography>
       </div>
-      <TimeLine/>
-    </>
+      <TimeLine reform={reform}/>
+    </>)
+    : <Loader/>
+
   );
 }
 

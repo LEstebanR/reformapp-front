@@ -1,12 +1,18 @@
 import { Card, CardActionArea, CardMedia, CardContent } from '@mui/material';
 import { Typography} from "@mui/material";
 import { AvatarGroup, Avatar } from '@mui/material';
+import history from '../utils/history';
+
 
 const ReformCard = (props) =>{
   const reform = props.reform;
+  const goToREform = () =>{
+    history.push(`/reform/${reform._id}`)
+  }
+
   return(
     <div>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345 }} onClick={goToREform}>
       <CardActionArea>
         <CardMedia
           component="img"
