@@ -42,12 +42,23 @@ const AceptInvitations = () => {
   }, [userDb])
     
   
-  const acept = () =>{
-    alert("Aceptado")
+  const acept = async (reform) =>{
+    const data = {
+      id: reform,
+      status: "accepted"
+    }
+    await axios.patch('/updateinvitation', data)
+    window.location.reload(); 
   }
+  
 
-  const reject = () =>{
-    alert("Rechazado")
+  const reject = async (reform) =>{
+    const data = {
+      id: reform,
+      status: "rejected"
+    }
+    await axios.patch('/updateinvitation', data)
+    window.location.reload(); 
   }
 
 
@@ -57,7 +68,7 @@ const AceptInvitations = () => {
     <div className={classes.container}>
       <Typography variant="h4" gutterBottom>Estas son tus invitaciones pendientes:</Typography>
       <div className={classes.card_container}>
-        {reforms.map(reform => {return (
+        {reforms.map((reform) => {return (
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
@@ -76,8 +87,8 @@ const AceptInvitations = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" onClick={acept}>Aceptar</Button>
-              <Button size="small" onClick={reject}>Rechazar</Button>
+              <Button size="small" id={reform._id} onClick={(e) => {acept(e.target.id)}}>Aceptar</Button>
+              <Button size="small"  id={reform._id} onClick={(e) => {reject(e.target.id)}}>Rechazar</Button>
             </CardActions>
           </Card>
         )})}
