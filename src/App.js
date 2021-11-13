@@ -3,7 +3,6 @@ import './App.css'
 import history from './utils/history';
 import Layout from  './components/Layout.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
-import Login from './pages/Login.jsx'
 import Home from './pages/homePage.jsx'
 import createPage from './pages/createPage.jsx'
 import SearchPage from './pages/SearchPage.jsx'
@@ -13,6 +12,7 @@ import ReformPage from './pages/ReformPage.jsx'
 import ProfileHome from './pages/ProfileHome';
 import UpdatePage from './pages/updatePage.jsx';
 import InvitePage from './pages/InvitePage.jsx';
+import Register from './pages/Register.jsx'
 
 const App = () => {
   return (
@@ -20,7 +20,6 @@ const App = () => {
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
           <Route exact path="/update" component={UpdatePage} />
           <Route exact path="/profile/home" component={ProfileHome} />
           <Route exact path="/profile/create" component={createPage} />
@@ -29,6 +28,7 @@ const App = () => {
           <Route exact path="/profile/companysearch" component={CompanySearchPage} />
           <Route exact path="/profile/invitations" component={InvitationsPage} />
           <Route exact path="/reform/:id" component={ReformPage} />
+          <Route exatc path="/register" component={Register} />
           <Route  path="*" component={ErrorPage} />
         </Switch>
       </Layout>

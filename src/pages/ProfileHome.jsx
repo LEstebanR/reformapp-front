@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { DataContext } from "../context/DataContext";
 import axios from "../utils/axios";
-
-
 import OptionsProfile from "../components/OptionsProfile";
 import { Grid } from "@mui/material";
 import Home from "../components/Home";
 import Loader from "../components/loader";
+import Register from "./Register";
 
 const options ={
   owner : [
@@ -31,13 +30,16 @@ const ProfileHome = () => {
   
   useEffect(() => {
     const getUser = async() => {
+       
       try {
+        if (user) {
       const currentUser = await axios.get(`/user/${user.sub}`)
       setUserDb(currentUser.data)
-      setRole(currentUser.data.role)
+      setRole(currentUser.data.role)}
       } catch (error) {
         console.error(error)
       }
+      
     
     }
     getUser()
@@ -80,9 +82,7 @@ const ProfileHome = () => {
         <Home user={userDb} reform={reform} invitations={invitations}/>
       </Grid>
     </Grid>
-    : <Loader/>
-  
-    
+    : <Register/>
   );
 };
 
