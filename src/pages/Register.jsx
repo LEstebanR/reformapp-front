@@ -66,8 +66,6 @@ const Register = () => {
     .catch(err => console.log(err))
 
   }
-  console.log(user, type)
-
   const send = async () => {
     const data = {
       authId: user.sub,

@@ -1,7 +1,6 @@
 import { Typography, TextField } from "@mui/material"
-import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
-// import Maptest from "./maptest";
+import MapCreate from "./maptest";
 
 const useStyles = makeStyles({
   container: {
@@ -16,18 +15,20 @@ const useStyles = makeStyles({
   }
 })
 
-
-const Map = () => {
+const Map = (props) => {
+  const {handleAdress, handleCountry, handleCity } = props;
   const classes = useStyles();
+
   return (
-    <div className={classes.container}>
-      {/* <Maptest /> */}
+    <>     
       <Typography variant="h4" gutterBottom>Selecciona tu ubicación</Typography>
-      <Box sx={{border: '1px solid black', width:400, height: 300, borderRadius: 5 }}></Box>
-      <TextField required id="adress-reform" label="¿Cuál es tu dirección?" className={classes.input}/>
-      <TextField required id="adress-reform" label="¿Cuál es tu país?"className={classes.input}/>
-      <TextField required id="adress-reform" label="¿Cuál es tu ciudad?"className={classes.input}/>
+      <MapCreate/>
+    <div className={classes.container}>
+      <TextField required id="adress-reform" label="¿Cuál es tu dirección?" className={classes.input} onChange={handleAdress}/>
+      <TextField required id="adress-reform" label="¿Cuál es tu país?"className={classes.input} onChange={handleCountry}/>
+      <TextField required id="adress-reform" label="¿Cuál es tu ciudad?"className={classes.input} onChange={handleCity}/>
     </div>
+    </> 
   )
 }
 

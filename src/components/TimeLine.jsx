@@ -13,10 +13,12 @@ import CheckIcon from '@mui/icons-material/Check';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 export default function TimeLine(props) {
-  const reform = props.reform[0];
-  console.log(reform)
+  const reformData = props.reformData
+
+  console.log(reformData)
 
   return (
+    reformData ?
     <Timeline position="alternate">
       <TimelineItem>
         <TimelineOppositeContent
@@ -38,7 +40,13 @@ export default function TimeLine(props) {
           <Typography variant="h6" component="span">
             Licitación
           </Typography>
-          <Typography>Proponentes: <br/>1. <br/>2.<br/> 3.</Typography>
+          
+          <Typography>Proponentes:</Typography>
+          {reformData.options.map((option, i) => {
+            return (
+              <Typography>{i+1}. {option.name} - <a href={option.propuse}>Propuesta</a></Typography>
+            )
+          })}
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
@@ -91,6 +99,6 @@ export default function TimeLine(props) {
           </Typography>
         </TimelineContent>
       </TimelineItem>
-    </Timeline>
+    </Timeline> : <div>Cargando...</div>
   );
 }

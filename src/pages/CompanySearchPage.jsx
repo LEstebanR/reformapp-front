@@ -1,12 +1,8 @@
 import OptionsProfile from "../components/OptionsProfile";
 import { Grid } from "@mui/material";
 import CompanySearch from "../components/CompanySearch.jsx";
+
 const options ={
-  owner : [
-    'Home',
-    'Crear reforma',
-    'Buscar Contratista'
-  ],
   company : [
     'Home',
     'Buscar Reforma',

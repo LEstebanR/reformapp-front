@@ -3,7 +3,10 @@ import { Box } from "@mui/system";
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { makeStyles } from "@mui/styles";
-import categories from '../assets/mock/categories'
+import MapCompany from "./MapCompany";
+import { useContext, useState, useEffect } from "react";
+import { DataContext} from "../context/DataContext";
+import axios from '../utils/axios'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -24,15 +27,41 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CompanySearch = () => {
+  const [query, setQuery] = useState('');
+  const [reforms, setReforms] = useState([]);
+  const {categories} = useContext(DataContext)
   const classes = useStyles();
+  
+  const handleChange = (event) => {
+    event.preventDefault();
+    setQuery(event.target.value);
+  };
+  
+
+  useEffect(() => {
+    const reforms = async() => {
+      try {
+        const response = await axios.get(`/reformbytype/${query}`)
+        setReforms(response.data.reform)  
+      } catch (error) {
+        console.error(error);
+      }
+      
+    }
+    reforms()
+  }, [query]);
+
   return(
-    <div className = {classes.container}>
+  
+    <>
       <Typography variant="h4" gutterBottom>Selecciona la categoría</Typography>
-      <Box sx={{border: '1px solid black', width:'75%', height: '60vh', borderRadius: 5 }}></Box>
+      <MapCompany reforms={reforms} />
+   <div className = {classes.container}>
       <ButtonGroup variant="contained" color="secondary" aria-label="outlined button group" className={classes.button_group}>
-       {categories.map((category) =><Button>{category}</Button> )} 
+       {categories.map((category) =><Button onClick={handleChange} value={category.subject}>{category.subject}</Button> )} 
       </ButtonGroup>
   </div>
+  </>
   )
 }
 

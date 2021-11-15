@@ -6,9 +6,8 @@ import history from '../utils/history';
 const ReformCardCompany = (props) =>{
   const invitations = props.invitations;
 
-  console.log(invitations);
   const goToReform = () =>{
-    history.push(`/reform/${invitations.reformId}`)
+    history.push(`/propuesta/${invitations.reformId}`)
   }
 
   return(

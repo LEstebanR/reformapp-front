@@ -13,6 +13,7 @@ import ProfileHome from './pages/ProfileHome';
 import UpdatePage from './pages/updatePage.jsx';
 import InvitePage from './pages/InvitePage.jsx';
 import Register from './pages/Register.jsx'
+import Proposal from './pages/Proposal';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route exact path="/profile/invitations" component={InvitationsPage} />
           <Route exact path="/reform/:id" component={ReformPage} />
           <Route exatc path="/register" component={Register} />
+          <Route exatc path="/propuesta/:id" component={Proposal} />
           <Route  path="*" component={ErrorPage} />
         </Switch>
       </Layout>

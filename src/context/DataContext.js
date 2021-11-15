@@ -7,6 +7,7 @@ export const DataContext = createContext();
 export const DataProvider = ({children}) => {
   const { user } = useAuth0();
   const [userDb, setUserDb] = useState('');
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const getUser = async() => {
@@ -17,12 +18,22 @@ export const DataProvider = ({children}) => {
       console.error(error)
     }
   }
+  const getCategories = async() => {
+    try {
+      const Allcategories = await axios.get('/categories')
+      setCategories(Allcategories.data.categories.splice(1, Allcategories.data.categories.length))
+      
+      } catch (error) {
+      console.error(error)
+    }
+  }
   getUser()
+  getCategories()
   }, [user])
 
   return (
 
-    <DataContext.Provider value={{user, userDb}}>
+    <DataContext.Provider value={{user, userDb, categories}}>
       {children}
     </DataContext.Provider>
 

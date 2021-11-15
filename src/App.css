@@ -15,6 +15,15 @@
   pointer-events: none;
 }
 
+.leaflet-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 400px;
+  margin: auto;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

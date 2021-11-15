@@ -37,7 +37,8 @@ const useStyles = makeStyles({
   }
 
 })
-const Create =  ({reform, setReform}) => {
+
+const Create =  ({reform, setReform,}) => {
   const [type, setType] = useState('');
   const [categories, setCategories] = useState(['Categorías']);
   const [name, setName] = useState('');
@@ -73,6 +74,7 @@ const Create =  ({reform, setReform}) => {
     e.preventDefault();
       try {
       setReform({
+      ...reform,
       title: name,
       description: description,
       location:"Medellin",
@@ -80,7 +82,7 @@ const Create =  ({reform, setReform}) => {
       category: type,
       ownerId: userDb.authId,
       ownerName: userDb.name,
-       })
+      })
       await axios.post('https://reformappbackend.herokuapp.com/reform', reform);
     } catch (error) {
       console.log(error);
@@ -106,7 +108,6 @@ const Create =  ({reform, setReform}) => {
       <Typography variant="h4" gutterBottom>Crear Reforma</Typography>
       <Box sx={{border: '1px solid black', width:400, height: 700, borderRadius: 5 }}
       className={classes.container}>
-      
       <Box
       sx={{
         width: 300,
@@ -144,8 +145,6 @@ const Create =  ({reform, setReform}) => {
           Subir Foto
         </Fab>
       </label>
- 
-
       <TextField variant="outlined" id="name-reform" label="Nombre de la reforma" className={classes.input} onChange={handleNameChange}/>
       <FormControl >
         <InputLabel id="category" >Categoría</InputLabel>
@@ -162,10 +161,8 @@ const Create =  ({reform, setReform}) => {
           ))}
         </Select>
       </FormControl>
-
       <TextField id="description-reform" label="Descripción de la reforma" multiline rows={3} className={classes.input} onChange={handleDescriptionChange}/>
       <Button variant="contained" endIcon={<SendIcon />} className={classes.button} onClick={send}>Send</Button>
-
       </Box>
     </div>
   );

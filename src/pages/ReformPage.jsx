@@ -52,7 +52,7 @@ return (
         <Typography variant="body1" color="initial">{reformData.description}</Typography>
         <Typography variant="body1" color="initial">Propietario: {reformData.ownerName}</Typography>
       </div>
-      <TimeLine reform={reform}/>
+      <TimeLine reform={reform} reformData={reformData}/>
     </>)
     : <Loader/>
 
