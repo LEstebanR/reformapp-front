@@ -14,7 +14,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     gap: '10px',
     margin: '10px',
-    marginBottom: '70px'
+    marginBottom: '70px',
+    height: '15vh'
   },
   button_group: {
     display: 'flex',
@@ -22,6 +23,10 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  title:{
+    margin : '20px',
+    textAlign: 'center'
   }
 }));
 
@@ -53,7 +58,9 @@ const CompanySearch = () => {
   return(
   
     <>
+      <div className={classes.title}>
       <Typography variant="h4" gutterBottom>Selecciona la categoría</Typography>
+      </div>
       <MapCompany reforms={reforms} />
    <div className = {classes.container}>
       <ButtonGroup variant="contained" color="secondary" aria-label="outlined button group" className={classes.button_group}>

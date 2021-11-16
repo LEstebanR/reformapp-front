@@ -12,7 +12,7 @@ const ReformCard = (props) =>{
 
   return(
     <div>
-      <Card sx={{ maxWidth: 345 }} onClick={goToREform}>
+      <Card sx={{ width: 320, height: 470 }} onClick={goToREform}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -32,7 +32,7 @@ const ReformCard = (props) =>{
           </Typography>
           <AvatarGroup max={6}>
             {reform.options.map((option, i) => (
-              <Avatar key={i} alt={option.name} src={option.photo} />
+              <Avatar key={i} alt={option.name} src={option.avatar} />
             ))}
           </AvatarGroup>
         </CardContent>

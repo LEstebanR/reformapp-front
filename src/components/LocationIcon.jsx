@@ -11,5 +11,6 @@ export const LocationIcon  = L.icon({
   shadowSize: null,
   shadowAnchor: null
   
+  
 })
 

@@ -10,11 +10,12 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    marginTop: "10px",
+    minHeight: "100vh",
   
   },
   cards_container:{
     display: "flex",
-    justifyContent: "center",
     flexDirection: "row",
     flexWrap: "wrap",
     gap: "20px",

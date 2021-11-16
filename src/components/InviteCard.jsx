@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Swal from 'sweetalert2'
 
 const InviteCard = (props) => {
   const reform = props.reform;
@@ -23,8 +24,14 @@ const InviteCard = (props) => {
         reformPhoto: reform.photo,
         reformTitle: reform.title,
       }
-      console.log(invitation);
       await axios.post('/invitation', invitation);  
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Tu invitación ha sido enviada',
+        showConfirmButton: false,
+        timer: 1500
+      })
     } catch (error) {
       console.log(error);
     }
@@ -33,7 +40,7 @@ const InviteCard = (props) => {
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 320 , height:320 }}>
       <CardMedia
         component="img"
         height="140"

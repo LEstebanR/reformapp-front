@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import '../App.css'
+import '../assets/layoutstyles.css'
+
 
 const Layout = (props) =>{
   return(

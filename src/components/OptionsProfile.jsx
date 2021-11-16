@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     margin: '10px'
   },
   desktop_container:{
-    margin: '10px',
+    margin: '20px',
     display: 'flex',
     justifyContent: 'center'
   }

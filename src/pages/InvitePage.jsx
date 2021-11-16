@@ -22,6 +22,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     gap: "25px",
+    marginTop: "20px",
+    minHeight: "82vh",
   },
   reform_container:{
     display: "flex",

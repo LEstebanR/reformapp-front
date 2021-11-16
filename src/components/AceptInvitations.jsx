@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
+import Swal from 'sweetalert2'
 
 const useStyles = makeStyles({
   card_container: {
@@ -18,7 +19,12 @@ const useStyles = makeStyles({
     marginBottom: '2rem'
   },
   container: {
-    height: '75vh',
+    minHeight: '85vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '15px',
+    marginTop: '20px'
   }
 
 })
@@ -48,7 +54,14 @@ const AceptInvitations = () => {
       status: "accepted"
     }
     await axios.patch('/updateinvitation', data)
-    window.location.reload(); 
+    window.location.reload();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Tu respuesta ha sido enviada',
+      showConfirmButton: false,
+      timer: 1500
+    }) 
   }
   
 

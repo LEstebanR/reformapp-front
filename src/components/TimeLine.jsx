@@ -11,13 +11,21 @@ import NoteAddRoundedIcon from '@mui/icons-material/NoteAddRounded';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 import CheckIcon from '@mui/icons-material/Check';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles(theme => ({
+  container:{
+    marginTop: '10px'
+  }
+}))
 
 export default function TimeLine(props) {
   const reformData = props.reformData
+  const classes = useStyles();
 
   return (
     reformData ?
-    <Timeline position="alternate">
+    <Timeline position="alternate" className={classes.container}>
       <TimelineItem>
         <TimelineOppositeContent
           sx={{ m: 'auto 0' }}
@@ -42,7 +50,7 @@ export default function TimeLine(props) {
           <Typography>Proponentes:</Typography>
           {reformData.options.map((option, i) => {
             return (
-              <Typography key={i} >{i+1}. {option.name} - <a href={option.propuse}>Propuesta</a></Typography>
+              <Typography key={i} >{i+1}. {option.name} - <a href={option.propuse} target="blank">Propuesta</a></Typography>
             )
           })}
         </TimelineContent>

@@ -13,6 +13,7 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { makeStyles } from "@mui/styles";
+import Swal from "sweetalert2";
 
 const useStyles = makeStyles({
   container: {
@@ -71,22 +72,33 @@ const Create =  ({reform, setReform,}) => {
 
 
   const send = async (e) => {
-    e.preventDefault();
-      try {
-      setReform({
+      e.preventDefault();
+      const data = {
       ...reform,
       title: name,
       description: description,
-      location:"Medellin",
+      location:"",
       photo: imageUrl,
       category: type,
       ownerId: userDb.authId,
       ownerName: userDb.name,
-      })
-      await axios.post('https://reformappbackend.herokuapp.com/reform', reform);
-    } catch (error) {
-      console.log(error);
+      
     }
+    console.log(reform)
+    await axios.post('https://reformappbackend.herokuapp.com/reform', data)
+      .then(response => {
+        console.log(response)
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'La reforma ha sido creada',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } )   
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   const uploadImage =  async (e) => {
@@ -123,7 +135,7 @@ const Create =  ({reform, setReform,}) => {
         },
       }}
       // eslint-disable-next-line jsx-a11y/img-redundant-alt
-      ><img src={imageUrl} alt={"Reform photo"} width="300" height="300"></img></Box>
+      ><img src={imageUrl} alt={""} width="300" height="300"></img></Box>
       <input type="file" id="file" name="file" accept="image/*"onChange={uploadImage} className={classes.hiden}/>
       <label htmlFor="file">
         <Fab
@@ -162,7 +174,7 @@ const Create =  ({reform, setReform,}) => {
         </Select>
       </FormControl>
       <TextField id="description-reform" label="Descripción de la reforma" multiline rows={3} className={classes.input} onChange={handleDescriptionChange}/>
-      <Button variant="contained" endIcon={<SendIcon />} className={classes.button} onClick={send}>Send</Button>
+      <Button variant="contained" endIcon={<SendIcon />} className={classes.button} onClick={send}>Enviar</Button>
       </Box>
     </div>
   );

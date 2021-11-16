@@ -2,18 +2,19 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
-import { useMediaQuery } from '@mui/material';
+import { Avatar, useMediaQuery } from '@mui/material';
 import HeaderMenu from './headerMenu';
-import {Link} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import history from '../utils/history'
+import { useContext } from 'react';
+import { DataContext } from '../context/DataContext';
 
 const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
   button_header : {
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(3),
   
   },
   button_container : {
@@ -43,6 +44,7 @@ const Header = (props) =>  {
   const biggerScreens = useMediaQuery('(min-width: 600px)');
   const classes = useStyles();
   const { loginWithRedirect, logout } = useAuth0();
+  const { userDb } = useContext(DataContext);
 
   const login = () => {
     loginWithRedirect()
@@ -67,7 +69,20 @@ const Header = (props) =>  {
           {/* </Button> */}
           
           <div className={classes.separator}></div>
-          {biggerScreens &&
+          {biggerScreens ?
+
+          userDb ? 
+            <div className={classes.button_container}>
+              <Button 
+                ton="true" variant="text" 
+                color="inherit" 
+                onClick={() => logout({})} 
+                className={classes.button_header}>Cerrar sesión
+              </Button>
+              <Avatar alt={userDb.name} src={userDb.avatar} /> 
+            </div>
+          :
+            
           <div className={classes.button_container}>
             <Button 
             ton="true" variant="text" 
@@ -75,17 +90,10 @@ const Header = (props) =>  {
             onClick={() => login()} 
             className={classes.button_header}>Iniciar sesión
             </Button>
-            <Button 
-            ton="true" variant="text" 
-            color="inherit" 
-            onClick={() => logout({})} 
-            className={classes.button_header}>Cerrar sesión
-            </Button>
           </div>
-          }
-          {mobileSize && 
+          :
           <HeaderMenu/>
-          }
+}
           </Toolbar>
           
       </AppBar>

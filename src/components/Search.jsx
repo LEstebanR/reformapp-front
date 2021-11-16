@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
+    marginTop: '20px',
   },
   results: {
     display: 'flex',

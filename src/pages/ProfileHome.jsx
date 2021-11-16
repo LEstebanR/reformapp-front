@@ -70,7 +70,7 @@ const ProfileHome = () => {
 
 
   return (
-    userDb && reform ? 
+    userDb ? 
     <Grid item="true" container >
       <Grid item="true" xs={12} sm={4}>
         <OptionsProfile options={options[role]} />

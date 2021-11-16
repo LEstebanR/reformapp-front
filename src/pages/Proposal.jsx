@@ -7,6 +7,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import Loader from "../components/loader";
 import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles(theme => ({
   img:{
@@ -24,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     gap: "25px",
     margin: "10px",
     marginBottom: "50px",
+    minHeight: "100vh",
   },
   hidden:{
     display: "none",
@@ -34,7 +36,6 @@ const Proposal = () => {
   const classes = useStyles();
   const [reformData, setReformData] = useState();
   const [proposal, setProposal] = useState();
-  const [proposalURL, setProposalURL] = useState();
   const [newProposal, setNewProposal] = useState({});
   const  id  = useLocation().pathname.split("/")[2];
   const {userDb} = useContext(DataContext)
@@ -62,24 +63,30 @@ const Proposal = () => {
 
     await axios.post('https://api.cloudinary.com/v1_1/reformapp/image/upload', formData)
     .then(res => {
-      setProposalURL(res.data.url)
       setNewProposal({
         id: reformData._id,
         name: userDb.name,
         avatar: userDb.avatar,
-        propuse: proposalURL,
+        propuse: res.data.url,
 
+      })
+      axios.patch('/propuesta', newProposal )
+    .then(res => {
+      console.log(res)
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Tu propuesta ha sido enviada',
+        showConfirmButton: false,
+        timer: 1500
       })
     })
     .catch(err => console.log(err))
 
-    await axios.patch('/propuesta', newProposal )
-    .then(res => console.log(res))
+    })
     .catch(err => console.log(err))
-
   }
 
-  console.log(newProposal)
 
 return (
   reformData?(

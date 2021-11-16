@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     gap: "25px",
+    marginTop: "10px",
   }
 }))
 
