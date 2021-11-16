@@ -6,6 +6,7 @@ import { useMediaQuery } from '@mui/material';
 import HeaderMenu from './headerMenu';
 import {Link} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import history from '../utils/history'
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -29,6 +30,10 @@ const useStyles = makeStyles(theme => ({
   link: {
     textDecoration: 'none',
     color: 'inherit',
+  },
+  logo:{
+    height: '60px',
+    margin: '3px'
   }
   
 }));
@@ -43,13 +48,24 @@ const Header = (props) =>  {
     loginWithRedirect()
   };
 
+  const home=()=>{
+    history.push('/');
+  }
+
   return (
     <div className={classes.header}>
       <AppBar position="fixed">
         <Toolbar>
-          <Button  ton="true+" variant="text" color="inherit"  className={classes.button_header}>
-            <Link to="/" className={classes.link}>Inicio</Link>
-          </Button>
+          <img 
+            src="https://res.cloudinary.com/lesteban/image/upload/v1637032304/Bajo_techo_kk63tl.png" 
+            alt="logo"
+            className={classes.logo}
+            onClick={home}
+            />
+          {/* <Button  ton="true+" variant="text" color="inherit"  className={classes.button_header}> */}
+            {/* <Link to="/" className={classes.link}>Inicio</Link> */}
+          {/* </Button> */}
+          
           <div className={classes.separator}></div>
           {biggerScreens &&
           <div className={classes.button_container}>
