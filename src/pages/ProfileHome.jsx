@@ -4,7 +4,6 @@ import axios from "../utils/axios";
 import OptionsProfile from "../components/OptionsProfile";
 import { Grid } from "@mui/material";
 import Home from "../components/Home";
-import Loader from "../components/loader";
 import Register from "./Register";
 
 const options ={
@@ -21,7 +20,7 @@ const options ={
 }
 
 const ProfileHome = () => {
-  const [userDb, setUserDb] = useState()
+  const [userDb, setUserDb] = useState("")
   const [role, setRole] = useState("owner");
   const [reform, setReform] = useState();
   const [invitations, setInvitations] = useState();
@@ -39,8 +38,6 @@ const ProfileHome = () => {
       } catch (error) {
         console.error(error)
       }
-      
-    
     }
     getUser()
   }, [user]);
@@ -74,11 +71,11 @@ const ProfileHome = () => {
 
   return (
     userDb && reform ? 
-    <Grid item container >
-      <Grid item xs={12} sm={4}>
+    <Grid item="true" container >
+      <Grid item="true" xs={12} sm={4}>
         <OptionsProfile options={options[role]} />
       </Grid>
-      <Grid items xs={12} sm={8}>
+      <Grid item="true" xs={12} sm={8}>
         <Home user={userDb} reform={reform} invitations={invitations}/>
       </Grid>
     </Grid>

@@ -45,9 +45,8 @@ const Header = (props) =>  {
 
   return (
     <div className={classes.header}>
-      <AppBar>
+      <AppBar position="fixed">
         <Toolbar>
-          
           <Button  ton="true+" variant="text" color="inherit"  className={classes.button_header}>
             <Link to="/" className={classes.link}>Inicio</Link>
           </Button>
@@ -55,26 +54,27 @@ const Header = (props) =>  {
           {biggerScreens &&
           <div className={classes.button_container}>
             <Button 
-            ton variant="text" 
+            ton="true" variant="text" 
             color="inherit" 
             onClick={() => login()} 
             className={classes.button_header}>Iniciar sesión
             </Button>
             <Button 
-            ton variant="text" 
+            ton="true" variant="text" 
             color="inherit" 
             onClick={() => logout({})} 
             className={classes.button_header}>Cerrar sesión
             </Button>
           </div>
           }
-          
           {mobileSize && 
           <HeaderMenu/>
           }
           </Toolbar>
+          
       </AppBar>
-      <Toolbar/><Toolbar/>
+      <Toolbar></Toolbar>
+
     </div>
   
   );

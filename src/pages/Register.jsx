@@ -48,10 +48,9 @@ const Register = () => {
   const [image, setImage] = useState('')
   const classes = useStyles();
 
-  
-
   const handleChange = (e) => {
     setType(e.target.value);
+    console.log(image)
   }
 
   const uploadImage =  async (e) => {
@@ -156,10 +155,7 @@ const Register = () => {
           Subir Foto
         </Fab>
       </label>
-
-      <Button variant="contained" endIcon={<SendIcon />} className={classes.button} onClick={send}>Send</Button>
-
-   
+        <Button variant="contained" endIcon={<SendIcon />} className={classes.button} onClick={send}>Send</Button>
       </div>
     </div>) : null
   );

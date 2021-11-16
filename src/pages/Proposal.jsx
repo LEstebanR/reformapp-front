@@ -55,6 +55,7 @@ const Proposal = () => {
 
   const uploadProposal = async (e) => {
     setProposal(e.target.files[0])
+    console.log(proposal)
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
     formData.append('upload_preset', 'reformapp');

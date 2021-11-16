@@ -11,12 +11,15 @@ export const DataProvider = ({children}) => {
 
   useEffect(() => {
     const getUser = async() => {
+      if(user){
     try {
       const userVerify = await axios.get(`/user/${user.sub}`)
       setUserDb(userVerify.data)
     } catch (error) {
       console.error(error)
     }
+  }
+  
   }
   const getCategories = async() => {
     try {
@@ -32,10 +35,8 @@ export const DataProvider = ({children}) => {
   }, [user])
 
   return (
-
     <DataContext.Provider value={{user, userDb, categories}}>
       {children}
     </DataContext.Provider>
-
   )
 }

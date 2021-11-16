@@ -91,6 +91,7 @@ const Create =  ({reform, setReform,}) => {
 
   const uploadImage =  async (e) => {
     setImage(e.target.files[0])
+    console.log(image)
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
     formData.append('upload_preset', 'reformapp');
@@ -101,8 +102,7 @@ const Create =  ({reform, setReform,}) => {
     .catch(err => console.log(err))
 
   }
-  
-  
+
   return (
     <div className={classes.container} >
       <Typography variant="h4" gutterBottom>Crear Reforma</Typography>
@@ -156,8 +156,8 @@ const Create =  ({reform, setReform,}) => {
           onChange={handleChange}
           className={classes.input}
         >
-          {categories.map(category => (
-            <MenuItem key={category._id} value={category.subject}>{category.subject}</MenuItem>
+          {categories.map((category, i) => (
+            <MenuItem key={i} value={category.subject}>{category.subject}</MenuItem>
           ))}
         </Select>
       </FormControl>

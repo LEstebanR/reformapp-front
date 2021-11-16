@@ -48,7 +48,7 @@ const Home = (props) => {
       <div className = {classes.cards_container}>
         {
         userDb.role === "owner" ? 
-        reform.map(reform => <ReformCard reform={reform} key={reform.id}/>)
+        reform.map(reform => <ReformCard reform={reform} key={reform._id}/>)
         : invitations.map((invitations, i) => <ReformCardCompany invitations={invitations} key={i}/>)
       }
       </div>

@@ -41,14 +41,14 @@ const CreatePage = () => {
       <Grid item xs={12} lg={4}>
         <OptionsProfile options={options.owner} />
       </Grid>
-      <Grid items xs={12} lg={4}>
+      <Grid item xs={12} lg={4}>
         <Map  
           handleAdress={handleAdress}
           handleCity={handleCity}
           handleCountry={handleCountry}
         />
       </Grid>
-      <Grid items xs={12} lg={4}>
+      <Grid item xs={12} lg={4}>
         <Create reform={reform} setReform={setReform}/>
       </Grid>
     </Grid>

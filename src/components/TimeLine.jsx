@@ -15,8 +15,6 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 export default function TimeLine(props) {
   const reformData = props.reformData
 
-  console.log(reformData)
-
   return (
     reformData ?
     <Timeline position="alternate">
@@ -44,7 +42,7 @@ export default function TimeLine(props) {
           <Typography>Proponentes:</Typography>
           {reformData.options.map((option, i) => {
             return (
-              <Typography>{i+1}. {option.name} - <a href={option.propuse}>Propuesta</a></Typography>
+              <Typography key={i} >{i+1}. {option.name} - <a href={option.propuse}>Propuesta</a></Typography>
             )
           })}
         </TimelineContent>

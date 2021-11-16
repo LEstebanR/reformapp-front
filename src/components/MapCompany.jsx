@@ -1,11 +1,9 @@
 import { MapContainer, TileLayer} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import Mark from '../components/Mark'
-import { MarkAsUnread } from '@mui/icons-material'
 
 const MapCompany = (props) =>  {
   const reforms = props.reforms
-  console.log(reforms)
   return (
     <>
     <MapContainer 
