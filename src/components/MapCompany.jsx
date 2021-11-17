@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer} from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import Mark from '../components/Mark'
 
@@ -16,7 +16,17 @@ const MapCompany = (props) =>  {
     />
     {reforms.map((reform, index) => {
       return (
-      <Mark coord={reform.mark} key={index}/>
+        console.log(reform),
+        <Marker position={reform.mark}>
+        <Mark coord={reform.mark} key={index}/>
+        <Popup>
+          <a href={`../propuesta/${reform._id}`}>{reform.title}</a>
+        </Popup>
+      </Marker>
+     
+      // 
+     
+      
     )
     })}
  

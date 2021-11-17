@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import history from '../utils/history'
 import { useContext } from 'react';
 import { DataContext } from '../context/DataContext';
+import { Typography } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -40,7 +41,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Header = (props) =>  {
-  const mobileSize = useMediaQuery('(max-width: 600px)');
   const biggerScreens = useMediaQuery('(min-width: 600px)');
   const classes = useStyles();
   const { loginWithRedirect, logout } = useAuth0();
@@ -64,6 +64,7 @@ const Header = (props) =>  {
             className={classes.logo}
             onClick={home}
             />
+            <Typography variant="h3">ReformApp</Typography>
           {/* <Button  ton="true+" variant="text" color="inherit"  className={classes.button_header}> */}
             {/* <Link to="/" className={classes.link}>Inicio</Link> */}
           {/* </Button> */}

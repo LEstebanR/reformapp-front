@@ -36,12 +36,10 @@ const Proposal = () => {
   const classes = useStyles();
   const [reformData, setReformData] = useState();
   const [proposal, setProposal] = useState();
-  const [newProposal, setNewProposal] = useState({});
   const  id  = useLocation().pathname.split("/")[2];
   const {userDb} = useContext(DataContext)
 
   useEffect(() => {
-    
     const getReform = async () => {
       try {
         const response = await axios.get(`/reformbyid/${id}`);
@@ -51,25 +49,23 @@ const Proposal = () => {
       } 
     }
     getReform();
-    
   } , [id]);
 
   const uploadProposal = async (e) => {
     setProposal(e.target.files[0])
-    console.log(proposal)
+    
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
     formData.append('upload_preset', 'reformapp');
-
     await axios.post('https://api.cloudinary.com/v1_1/reformapp/image/upload', formData)
     .then(res => {
-      setNewProposal({
+      const newProposal= {
         id: reformData._id,
         name: userDb.name,
         avatar: userDb.avatar,
         propuse: res.data.url,
-
-      })
+      }
+      console.log(proposal)
       axios.patch('/propuesta', newProposal )
     .then(res => {
       console.log(res)
@@ -82,7 +78,6 @@ const Proposal = () => {
       })
     })
     .catch(err => console.log(err))
-
     })
     .catch(err => console.log(err))
   }

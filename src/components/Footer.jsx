@@ -38,8 +38,8 @@ const Footer = () =>  {
       © 2021 ReformApp
       </Typography>
           <IconButton edge="end" color="primary" aria-label="menu">
-            <LinkedInIcon className={classes.icons} />
-            <GitHubIcon className={classes.icons}/>
+            <a href="https://www.linkedin.com/in/lestebanr/"  target="blank"><LinkedInIcon className={classes.icons}/></a>
+            <a href="https://github.com/LEstebanR" target="blank"><GitHubIcon className={classes.icons} href=""/></a>
           </IconButton>
       </Toolbar>
       </AppBar>
