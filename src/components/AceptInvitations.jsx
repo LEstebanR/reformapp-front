@@ -55,13 +55,6 @@ const AceptInvitations = () => {
     }
     await axios.patch('/updateinvitation', data)
     window.location.reload();
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Tu respuesta ha sido enviada',
-      showConfirmButton: false,
-      timer: 1500
-    }) 
   }
   
 
